@@ -29,7 +29,7 @@ func (game *Game) CreateGame(humans int, robots int) {
 	game.deck.shuffleDeck()
 	//game.deck.printDeck()
 
-	game.DealCards();
+	game.DealCards()
 
 	//game.deck.printDeck()
 
