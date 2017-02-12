@@ -6,7 +6,7 @@ import (
 )
 
 type Deck struct {
-	Cards []Card
+	Cards Cards
 }
 
 
@@ -19,6 +19,7 @@ func createDeck() Deck {
 			deck.Cards = append(deck.Cards, card)
 		}
 	}
+	fmt.Printf("New deck: %d cards in deck\n", len(deck.Cards) )
 	return deck
 }
 
@@ -31,8 +32,13 @@ func (deck *Deck) shuffleDeck() {
 }
 
 func (deck *Deck) dealCard() Card {
-	var card = deck.Cards[0]
-	deck.Cards = append(deck.Cards[:0], deck.Cards[1:]...)
+	//var card  = deck.Cards[len(deck.Cards)-1]
+	//var card = deck.Cards[0]
+	//deck.Cards
+	var card Card
+	fmt.Printf("%d cards left in deck\n", len(deck.Cards) )
+	card, deck.Cards = deck.Cards[len(deck.Cards)-1], deck.Cards[:len(deck.Cards)-1]
+	//deck.Cards = append(deck.Cards[:0], deck.Cards[1:]...)
 	return card
 }
 

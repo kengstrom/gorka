@@ -3,8 +3,10 @@ package gorka
 import "fmt"
 
 var (
-	SUITES []string = []string{"club", "diamond", "hearts", "spades"}
-	VALUES []string = []string{"","","two", "three","four","five","six","seven","eight","nine","ten","jack", "queen", "king", "ace"}
+	SUITES []string = []string{"C", "D", "H", "S"}
+	VALUES []string = []string{"","","2", "3","4","5","6","7","8","9","10","J", "Q", "K", "A"}
+//	SUITES []string = []string{"club", "diamond", "hearts", "spades"}
+//	VALUES []string = []string{"","","two", "three","four","five","six","seven","eight","nine","ten","jack", "queen", "king", "ace"}
 	/*
 	GLYPH map[int]string = map[int]string {
 		314:  "\U0001f0a1", 214:  "\U0001f0b1", 114:  "\U0001f0c1", 14:  "\U0001f0d1",
@@ -41,14 +43,14 @@ const (
 	JACK
 	QUEEN
 	KING*/
-	ACE = iota + 14
+	ACE = 14
 )
 
 type Card struct {
 	Suit	int
 	Value	int
 }
-
+type Cards []Card
 
 func (card Card)compareCard(card2 Card) bool {
 	return false
@@ -56,6 +58,20 @@ func (card Card)compareCard(card2 Card) bool {
 
 // to string..
 func (card Card) String() string {
-	return fmt.Sprintf("%s of %s", VALUES[card.Value], SUITES[card.Suit])
+	//return fmt.Sprintf("%s of %s", VALUES[card.Value], SUITES[card.Suit])
+	return fmt.Sprintf("%s%s", VALUES[card.Value], SUITES[card.Suit])
 	//return fmt.Sprintf("%s", GLYPH[card.Suit*100 + card.Value])
+}
+
+//implement sort.Interface
+func (slice Cards) Len() int {
+	return len(slice)
+}
+
+func (slice Cards) Less(i, j int) bool {
+	return slice[i].Value < slice[j].Value
+}
+
+func (slice Cards) Swap(i, j int) {
+	slice[i], slice[j] = slice[j], slice[i]
 }

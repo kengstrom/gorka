@@ -11,7 +11,8 @@ func main() {
 	rand.Seed(time.Now().UTC().UnixNano())
 	fmt.Println("Starting game...")
 	var game gorka.Game
-	game.CreateGame(1,3)
+	game.CreateGame(0,4)
+	game.PlayGame()
 
 
 }
