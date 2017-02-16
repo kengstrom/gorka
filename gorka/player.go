@@ -20,6 +20,7 @@ type Player struct {
 	Type int
 	Name string
 	Hand Cards
+	Points int
 }
 
 // to string..
@@ -36,7 +37,7 @@ func (player Player) String() string {
 
 
 func createHumanPlayer(name string) Player{
-	var player = Player{HUMAN, name, nil}
+	var player = Player{HUMAN, name, nil, 0}
 	return player
 }
 
@@ -44,7 +45,7 @@ func createRobotPlayer() Player {
 	var nameIndex = rand.Intn(len(ROBOT_NAMES))
 	var name string = ROBOT_NAMES[nameIndex]
 	ROBOT_NAMES = append(ROBOT_NAMES[:nameIndex], ROBOT_NAMES[nameIndex+1:]... )
-	var player = Player{ROBOT, name, nil}
+	var player = Player{Type: ROBOT, Name: name}
 	return player
 }
 
